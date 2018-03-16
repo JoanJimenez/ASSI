@@ -1,0 +1,23 @@
+dev tap
+proto udp
+port 1194
+ca /etc/openvpn/easy-rsa/keys/ca.crt
+cert /etc/openvpn/easy-rsa/keys/server.crt
+key /etc/openvpn/easy-rsa/keys/server.key
+dh /etc/openvpn/easy-rsa/keys/dh2048.pem
+duplicate-cn ## Allow same key all clients
+tls-server
+mode server
+persist-key
+status /var/log/openvpn-status.log
+push "explicit-exit-notify 3"
+verb 3
+keepalive 10 300
+client-to-client # If you want to allow the vpn clients to communicate its other
+log-append /var/log/openvpn
+comp-lzo
+client-cert-not-required
+ifconfig 172.20.0.1 255.255.0.0
+###LDAP Integration
+plugin /usr/lib/openvpn/openvpn-auth-ldap.so /etc/openvpn/auth/auth-ldap.conf
+

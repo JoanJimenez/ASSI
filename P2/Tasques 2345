@@ -1,0 +1,18 @@
+---Tasca 2---
+
+Servidor TCP: nc -l -k 10000
+Client TCP: nc 10.0.3.1 10000
+
+---Tasca 3---
+
+Servidor UDP: nc -l -k -u 10000
+Client UDP: nc -u 10.0.3.1 10000
+
+---Tasca 4---
+
+No es reben missatges simultàniament dels dos clients.
+
+---Tasca 5---
+
+Ni puta idea
+

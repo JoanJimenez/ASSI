@@ -1,0 +1,18 @@
+client
+dev tap0
+proto udp
+remote desword.epsem.upc.edu 1194
+resolv-retry infinite
+nobind
+persist-key
+ca ca.crt
+cert usuari.crt
+key usuari.key
+ns-cert-type server
+comp-lzo
+verb 3
+keepalive 5 300
+#User and/or LDAP authentication
+auth-user-pass
+#auth-nocache
+#reneg-sec 7200

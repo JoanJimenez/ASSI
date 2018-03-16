@@ -1,0 +1,94 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number: 2 (0x2)
+    Signature Algorithm: sha1WithRSAEncryption
+        Issuer: C=ES, ST=BCN, L=Manresa, O=EPSEM, OU=UPC, CN=desword/name=changeme/emailAddress=operacio@epsem.upc.edu
+        Validity
+            Not Before: Nov 19 16:32:09 2013 GMT
+            Not After : Nov 17 16:32:09 2023 GMT
+        Subject: C=ES, ST=BCN, L=Manresa, O=EPSEM, OU=UPC, CN=usuari/name=usuari/emailAddress=operacio@epsem.upc.edu
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                Public-Key: (2048 bit)
+                Modulus:
+                    00:f8:7c:9b:99:ba:4b:2d:32:c9:7b:34:48:13:ed:
+                    20:40:3e:21:95:03:d1:aa:3b:38:c3:64:cb:6d:50:
+                    ab:19:86:7b:f4:ef:91:4f:a7:cc:ba:cd:a6:93:f4:
+                    ff:92:24:31:3f:e5:3f:6d:4d:19:e7:3d:bf:30:a4:
+                    fd:dc:92:58:55:88:77:ec:5c:78:25:b7:93:0e:fc:
+                    24:58:8e:c2:f6:71:bd:02:2d:34:cd:e1:5e:f9:a6:
+                    fc:eb:6a:10:79:a9:9a:8f:76:ca:b1:ec:7a:26:65:
+                    05:95:8f:3b:93:b1:df:ae:a9:a7:5e:8b:1b:a7:e7:
+                    99:b0:3a:b5:30:e3:89:a8:5f:e4:e5:5c:7f:2e:38:
+                    b1:3e:08:3c:52:1f:d7:8a:db:c6:e6:67:cc:08:dc:
+                    14:f6:3d:65:2c:be:af:2b:7f:c1:db:d1:fc:f1:63:
+                    28:03:1f:eb:58:15:f0:fb:d7:1c:5f:df:42:18:0a:
+                    4f:49:ff:6b:42:07:08:02:a4:30:77:57:3b:bf:14:
+                    46:f9:1d:27:07:24:e7:a2:09:b5:b7:6d:3b:41:53:
+                    80:e7:bc:1c:83:b7:79:20:37:5b:b8:da:fe:29:a5:
+                    1c:36:0f:dc:60:6c:e9:f4:10:6b:96:87:15:0c:2b:
+                    06:8e:22:c9:25:3f:5f:8e:9e:f8:45:33:f4:95:81:
+                    9f:6d
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            Netscape Comment: 
+                Easy-RSA Generated Certificate
+            X509v3 Subject Key Identifier: 
+                C9:B5:1A:BE:5F:9E:CA:87:10:43:40:43:0D:0C:5E:DF:30:C4:BE:60
+            X509v3 Authority Key Identifier: 
+                keyid:E2:A8:C7:C4:29:3E:42:45:9E:AC:FF:F3:D0:CC:09:DD:30:2E:89:C0
+                DirName:/C=ES/ST=BCN/L=Manresa/O=EPSEM/OU=UPC/CN=desword/name=changeme/emailAddress=operacio@epsem.upc.edu
+                serial:B8:FD:39:7D:0A:9C:1C:35
+
+            X509v3 Extended Key Usage: 
+                TLS Web Client Authentication
+            X509v3 Key Usage: 
+                Digital Signature
+    Signature Algorithm: sha1WithRSAEncryption
+         96:de:8d:54:92:71:e2:2f:7f:c6:84:de:2d:49:5e:f8:8b:1a:
+         63:9b:d6:d0:53:d5:1e:b7:1b:fc:cb:dc:c9:67:b6:b8:3a:b4:
+         42:62:c8:84:f4:6d:26:cd:16:20:9d:9e:33:9d:9f:9e:72:9b:
+         e0:ca:f1:5e:03:b4:94:bd:2b:cc:01:da:46:b3:49:33:af:93:
+         1c:ac:a3:f7:69:d6:9a:19:47:58:e4:d3:27:fe:c2:ae:29:bf:
+         df:e7:ca:8e:f0:69:83:49:14:eb:a7:40:bd:6c:3d:65:f7:b4:
+         cf:a4:25:ea:60:1f:ef:a9:69:ac:d8:ed:fe:73:aa:fb:26:d1:
+         97:f9:98:87:ca:ab:70:c9:e1:f1:f5:0c:c6:0c:ea:24:bb:77:
+         70:59:5c:c9:29:81:3f:19:94:35:9e:20:cb:01:80:21:92:87:
+         41:08:ed:38:04:76:c4:52:81:45:cb:e5:9d:dd:55:d7:98:43:
+         16:54:e8:ce:24:c5:0b:d0:d3:a0:2e:32:b7:22:7e:af:c6:62:
+         20:e2:a3:c4:0f:54:ce:18:3d:11:18:42:ff:b6:27:37:ca:49:
+         85:60:da:31:5b:bb:9c:71:85:05:52:33:93:b4:fe:ed:77:24:
+         05:29:64:84:47:e0:1b:10:61:5f:56:48:c6:32:f2:18:00:f5:
+         98:44:5e:a8
+-----BEGIN CERTIFICATE-----
+MIIE+DCCA+CgAwIBAgIBAjANBgkqhkiG9w0BAQUFADCBlzELMAkGA1UEBhMCRVMx
+DDAKBgNVBAgTA0JDTjEQMA4GA1UEBxMHTWFucmVzYTEOMAwGA1UEChMFRVBTRU0x
+DDAKBgNVBAsTA1VQQzEQMA4GA1UEAxMHZGVzd29yZDERMA8GA1UEKRMIY2hhbmdl
+bWUxJTAjBgkqhkiG9w0BCQEWFm9wZXJhY2lvQGVwc2VtLnVwYy5lZHUwHhcNMTMx
+MTE5MTYzMjA5WhcNMjMxMTE3MTYzMjA5WjCBlDELMAkGA1UEBhMCRVMxDDAKBgNV
+BAgTA0JDTjEQMA4GA1UEBxMHTWFucmVzYTEOMAwGA1UEChMFRVBTRU0xDDAKBgNV
+BAsTA1VQQzEPMA0GA1UEAxMGdXN1YXJpMQ8wDQYDVQQpEwZ1c3VhcmkxJTAjBgkq
+hkiG9w0BCQEWFm9wZXJhY2lvQGVwc2VtLnVwYy5lZHUwggEiMA0GCSqGSIb3DQEB
+AQUAA4IBDwAwggEKAoIBAQD4fJuZukstMsl7NEgT7SBAPiGVA9GqOzjDZMttUKsZ
+hnv075FPp8y6zaaT9P+SJDE/5T9tTRnnPb8wpP3cklhViHfsXHglt5MO/CRYjsL2
+cb0CLTTN4V75pvzrahB5qZqPdsqx7HomZQWVjzuTsd+uqadeixun55mwOrUw44mo
+X+TlXH8uOLE+CDxSH9eK28bmZ8wI3BT2PWUsvq8rf8Hb0fzxYygDH+tYFfD71xxf
+30IYCk9J/2tCBwgCpDB3Vzu/FEb5HScHJOeiCbW3bTtBU4DnvByDt3kgN1u42v4p
+pRw2D9xgbOn0EGuWhxUMKwaOIsklP1+OnvhFM/SVgZ9tAgMBAAGjggFOMIIBSjAJ
+BgNVHRMEAjAAMC0GCWCGSAGG+EIBDQQgFh5FYXN5LVJTQSBHZW5lcmF0ZWQgQ2Vy
+dGlmaWNhdGUwHQYDVR0OBBYEFMm1Gr5fnsqHEENAQw0MXt8wxL5gMIHMBgNVHSME
+gcQwgcGAFOKox8QpPkJFnqz/89DMCd0wLonAoYGdpIGaMIGXMQswCQYDVQQGEwJF
+UzEMMAoGA1UECBMDQkNOMRAwDgYDVQQHEwdNYW5yZXNhMQ4wDAYDVQQKEwVFUFNF
+TTEMMAoGA1UECxMDVVBDMRAwDgYDVQQDEwdkZXN3b3JkMREwDwYDVQQpEwhjaGFu
+Z2VtZTElMCMGCSqGSIb3DQEJARYWb3BlcmFjaW9AZXBzZW0udXBjLmVkdYIJALj9
+OX0KnBw1MBMGA1UdJQQMMAoGCCsGAQUFBwMCMAsGA1UdDwQEAwIHgDANBgkqhkiG
+9w0BAQUFAAOCAQEAlt6NVJJx4i9/xoTeLUle+IsaY5vW0FPVHrcb/MvcyWe2uDq0
+QmLIhPRtJs0WIJ2eM52fnnKb4MrxXgO0lL0rzAHaRrNJM6+THKyj92nWmhlHWOTT
+J/7Crim/3+fKjvBpg0kU66dAvWw9Zfe0z6Ql6mAf76lprNjt/nOq+ybRl/mYh8qr
+cMnh8fUMxgzqJLt3cFlcySmBPxmUNZ4gywGAIZKHQQjtOAR2xFKBRcvlnd1V15hD
+FlToziTFC9DToC4ytyJ+r8ZiIOKjxA9Uzhg9ERhC/7YnN8pJhWDaMVu7nHGFBVIz
+k7T+7XckBSlkhEfgGxBhX1ZIxjLyGAD1mEReqA==
+-----END CERTIFICATE-----
