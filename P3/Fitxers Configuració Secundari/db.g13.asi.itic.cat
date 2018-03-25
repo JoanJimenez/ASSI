@@ -1,0 +1,31 @@
+;Temps vida
+$TTL 3H
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;Registres SOA
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+g13.asi.itic.cat.  IN	 SOA  ns1.g13.asi.itic.cat. naysephirot@gmail.com (
+		  201824; serial
+		  7200 ; resfresh
+		  3600 ; retry
+		  1W ; expire
+		  2H ); negative cache TTL
+
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;Definicio nameservers
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+g13.asi.itic.cat.		IN  NS 		ns1.g13.asi.itic.cat.
+g13.asi.itic.cat.		IN  NS 		ns2.g13.asi.itic.cat.
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;Mapeig noms
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ns1.g13.asi.itic.cat.		IN A 		172.20.13.4
+ns2.g13.asi.itic.cat.		IN A 		172.20.13.5
+g13.asi.itic.cat.			IN A 		172.20.13.1
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;Alies
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+www	IN	CNAME	g13.asi.itic.cat

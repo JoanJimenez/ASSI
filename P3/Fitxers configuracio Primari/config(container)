@@ -1,0 +1,21 @@
+# Template used to create this container: /usr/share/lxc/templates/lxc-ubuntu
+# Parameters passed to the template:
+# Template script checksum (SHA-1): 241970f22488a57b618a2d8383691fb51b396440
+# For additional config options, please look at lxc.container.conf(5)
+
+# Common configuration
+lxc.include = /usr/share/lxc/config/ubuntu.common.conf
+
+# Container specific configuration
+lxc.rootfs = /var/lib/lxc/DNSPrimari/rootfs
+lxc.mount = /var/lib/lxc/DNSPrimari/fstab
+lxc.utsname = DNSPrimari
+lxc.arch = amd64
+
+# Network configuration
+lxc.network.type = veth
+lxc.network.flags = up
+lxc.network.link = lxcbr0
+lxc.network.ipv4 = 172.20.13.4/16
+lxc.network.ipv4.gateway = auto
+lxc.network.hwaddr = 00:16:3e:1e:80:fd

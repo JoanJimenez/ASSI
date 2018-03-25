@@ -1,151 +1,102 @@
 Pràctica 3: Servei de noms
 ==========================
 
-:authors: Joan Jiménez Alarcón
+:Autor: Joan Jiménez Alarcón
+:Data: 25 de Març de 2018
 
-Objectiu
---------
+---------------------
+
+Objectiu de la pràctica
+------------------------
 L'objectiu d'aquesta pràctica és implementar servidors DNS i configurar-los. Per a assolir aquest objectiu s'ha utilitzat el paquet bind9.
 
-Tàsques realitzades
+Tasques realitzades
 -------------------
 
 El primer pas ha estat crear dues màquines virtuals noves, on hi haurà els serveis de DNS primari i secundari. A cadascuna se li ha assignat una IP dins del rang assignat del VPN de l'assignatura al grup, i s'ha respectat el pacte de que aquestes màquines tinguin la IP 172.20.13.4 pel DNS primari i la IP 172.20.13.5 pel DNS secundari.
 
-Els passos per a crear i configurar la màquina del DNS primari han estat els següents:
-1) /var/lib/lxc/DNSPrimari/config
+Els passos per a crear i configurar la màquina del DNS Primari i Secundari han estat els següents:
 
-	S'ha modificat aquest fitxer de configuració del contenidor per tal d'establir una IP fixa en aquesta màquina.
-	::
-		FITXER
-____A PARTIR DAQI
+Pas 1 - Fitxer */var/lib/lxc/<NOM_MAQUINA>/config*
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-2) /etc/network/interfaces
+S'ha modificat aquest fitxer de configuració del contenidor per tal d'establir una IP fixa en la màquina <NOM_MAQUINA> (s'ha de fer tant en la màquina encarregada del DNS Primari com a la del DNS Secundari. Ha quedat de la següent manera:
 
-   Dins la maquina virtual, hem modificat l'arxiu interfaces i l'hem deixat d'aquesta manera:
-   ::
-      # The loopback network interface
-      auto lo
-      iface lo inet loopback
+Pel DNS Primari:
 
-      auto eth0
-      iface eth0 inet manual
-      dns-nameservers 127.0.0.1 172.20.6.4
+.. code-block:: raw
+  :include: memoria/configprimari
 
-3) /etc/resolv.conf
+Pel DNS Secundari:
 
-   Farem que apunti a la xarxa local.
-   ::
-      nameserver 127.0.0.1
+.. code-block:: raw
+  :include: memoria/configsecundari
 
-4) /etc/bind/named.conf.local
+Pas 2 - Fitxer */var/lib/lxc/<NOM_MAQUINA>/rootfs/etc/network/interfaces*
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-   Dins d'aquest fitxer definirem la nostra zona. Ho hem fet així:
-   ::
-      zone "g7.asi.itic.cat" IN {
-          type master;
-          file "/etc/bind/db.g7.asi.itic.cat";
-          allow-transfer {172.20.7.5;};
-      };
+El següent pas ha estat modificar el fitxer interfaces de les màquines virtuals tant del DNS Primari com del Secundari.
 
-      // Consider adding the 1918 zones here, if they are not used in your
-      // organization
-      //include "/etc/bind/zones.rfc1918";
+En ambdues màquines el fitxer ha quedat configurat de la mateixa manera:
 
-5) /etc/bind/db.g7.asi.itic.cat
+.. code-block:: raw
+  :include: memoria/interfacesprimari
 
-   Dins aquest fitxer creem la nostra taula de resolució de noms.
-   ::
-      $TTL 5H
-      g7.asi.itic.cat.        IN      SOA     ns.g7.asi.itic.cat.
-                                               adriiauguets@gmail.com. (
-                              2014011201      ; serial
-                              7200            ; Refresh
-                              3600            ; Retry
-                              1W              ; Expire
-                              1W )            ; Negative Cache TTL
-      ;servidors de noms
-      g7.asi.itic.cat.        IN      NS      ns.g7.asi.itic.cat.
-      g7.asi.itic.cat.        IN      NS      ns2.g7.asi.itic.cat.
+Després d'efectuar un reboot a la màquina virtual (necessari després de modificar el fitxer *interfaces*) comprovem que el fitxer */etc/resolv.conf* té la entrada *nameserver 127.0.0.1*. Si apareix aquesta entrada, sabem que hem modificat el fitxer *interfaces* correctament.
 
-      ;Registres A
-      ns.g7.asi.itic.cat.     IN      A       172.20.7.4
-      ns2.g7.asi.itic.cat.    IN      A       172.20.7.5
-      g7.asi.itic.cat.        IN      A       172.20.7.6
+Pas 3 - Fitxer */var/lib/lxc/<NOM_MAQUINA>/rootfs/etc/bind/named.conf.local*
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-   En aquesta taula definim de moment nomes els Registres A per tal que aquests noms responguin amb l'adreça de la maquina esperada.
+En aquest fitxer definim la nostra zona d'autoritat de la següent manera:
 
-   Un cop feta aquesta configuració només queda definir el DNS secundari, ip 172.20.7.5 .
+Pel DNS Primari, que actuarà de master:
 
-6) DNS Secundari. /etc/bind/named.conf.local
-   Hem de canviar uns noms a diferencia del fitxer del dns
-   ::
-     zone "g7.asi.itic.cat" IN {
-        type slave;
-        file "db.g7.asi.itic.cat";
-        masters {172.20.7.4;
-        };
-     };
+.. code-block:: raw
+  :include: memoria/conflocalprimari
 
-     // Consider adding the 1918 zones here, if they are not used in your
-     // organization
-     //include "/etc/bind/zones.rfc1918";
+Pel DNS Secundari, que actuarà de slave:
 
+.. code-block:: raw
+  :include: memoria/conflocalsecundari
 
+Pas 4 - Fitxer */var/lib/lxc/<NOM_MAQUINA>/rootfs/etc/bind/db.g13.asi.itic.cat*
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-7) /etc/bind/db.g7.asi.itic.cat
+Creem aquest fitxer dins el directori indicat en ambdues màquines. Aquest fitxer contindrà la nostra taula de resolució de noms amb els registres tipus A que vinculen aquests noms amb les adreces IP de les màquines necessàries. El fitxer queda de la següent manera tant en el DNS Primari com en el Secundari:
 
-   Per lo tant la resolucio de noms del DNS secundari quedarà de la següent manera:
+.. code-block:: raw
+  :include: memoria/dbg13
 
-   ::
+Un cop hem creat aquest fitxer, per tal de que el servei *bind* reconegui els canvis, cal executar la comanda *service bind9 reload*.
+Ja tenim els dos servidors configurats.
 
-	$TTL 1w
-      	g7.asi.itic.cat         IN      SOA     ns.g7.asi.itic.cat
-	 					pavel.macutela1@gmail.com.(
-	                	2013021201      ;serial
-			        2h              ;refresh
-          		        1h              ;retry
-                       	        1w              ;Expire
-                       	        1w )            ; Negative cache TTL
+Pas 5 - Proves de resolució de noms
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-     ;servidor de noms
-     g7.asi.itic.cat.        IN      NS      ns.g7.asi.itic.cat.
-     g7.asi.itic.cat.        IN      NS      ns2.g7.asi.itic.cat.
+Finalment, executem un petit joc de proves per veure que el nostre servei de resolució de noms està funcionant correctament.
 
-     ;Registros A
-     ns                      IN      A       172.20.7.4
-     ns2                     IN      A       172.20.7.5
-     g7.asi.itic.cat         IN      A       172.20.7.6
+Aquestes proves s'han realitzat amb la eina *dig*.
 
+1) Des de la màquina DNSPrimari fem un *dig* a la màquina DNSSecundari mitjançant *dig ns2.g13.asi.itic.cat*. El resultat és el següent:
 
-8) Des de la maquina 170.20.7.5 executem la comanda: **dig ns.g7.asi.itic.cat** y el resultat obtingut es:
+.. image:: memoria/digprimariasecundari.png
+  :align: center
+  :scale: 200%
 
-   ::
+S'observa com la resolució de noms s'ha efectuat correctament, ja que s'obtè resposta de la direcció esperada.
 
-	; <<>> DiG 9.10.3-P4-Ubuntu <<>> ns.g7.asi.itic.cat
-	;; global options: +cmd
-	;; Got answer:
-	;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 5654
- 	;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 2, ADDITIONAL: 2
+2) Des de la màquina DNSSecundari fem un *dig* a la màquina DNSPrimari mitjançant *dig ns1.g13.asi.itic.cat*. El resultat és el següent:
 
-	;; OPT PSEUDOSECTION:
-	; EDNS: version: 0, flags:; udp: 4096
-	;; QUESTION SECTION:
-	;ns.g7.asi.itic.cat.		IN	A
+.. image:: memoria/digsecundariaprimari.png
+  :align: center
+  :scale: 200%
 
- 	;; ANSWER SECTION:
-	ns.g7.asi.itic.cat.	18000	IN	A	172.20.7.4
+De la mateixa manera que en la prova anterior, obtenim resposta de la direcció esperada.
 
- 	;; AUTHORITY SECTION:
-	g7.asi.itic.cat.	18000	IN	NS	ns.g7.asi.itic.cat.
-	g7.asi.itic.cat.	18000	IN	NS	ns2.g7.asi.itic.cat.
+3) Des d'una tercera màquina que no actua com a servidor DNS, fem un *dig* a algun dels nostres servidors amb les comandes emprades en les proves anteriors. El resultat és el següent:
 
-	;; ADDITIONAL SECTION:
-	ns2.g7.asi.itic.cat.	18000	IN	A	172.20.7.5
+.. image:: memoria/digm1aprimari.png
+  :align: center
+  :scale: 200%
 
-        ;; Query time: 94 msec
- 	;; SERVER: 172.20.7.4#53(172.20.7.4)
-	;; WHEN: Wed Mar 22 19:01:24 UTC 2017
-	;; MSG SIZE  rcvd: 111
-
-Dig retorna el resultat esperat, per lo tant podem donat per finalitzada la pràctrica y el seu correcte funcionament
+Cal dir que per a aquesta prova des d'una tercera màquina, cal que tingui com a servidor DNS la adreça del nostre servidor primari, com a mínim.
